@@ -6,14 +6,18 @@ import { redis } from "../connection/redisConnections";
 const worker = new Worker(
   "task-queue",
   async (job) => {
-    console.log(`Processando tarefa: ${job.name}`);
+    try {
+      console.log(`Processando tarefa: ${job.name}`);
 
-    if (job.name === "create-letter") {
-      await prisma.letter.create({
-        data: job.data,
-      });
-
-      console.log("Tarefa processada com sucesso!");
+      if (job.name === "create-letter") {
+        await prisma.letter.create({
+          data: job.data,
+        });
+        console.log("Tarefa processada com sucesso!");
+      }
+    } catch (error) {
+      console.error(`Erro ao processar a tarefa ${job.id}:`, error);
+      throw error;
     }
   },
   { connection: redis }
