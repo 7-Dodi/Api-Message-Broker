@@ -31,11 +31,10 @@ Antes de rodar o projeto, certifique-se de ter os seguintes requisitos instalado
 Crie um arquivo .env na raiz do projeto com as seguintes configurações:
 ```bash
 # Definição do banco de dados
-DATABASE_URL="postgresql://docker:docker@localhost:5456/mydb?schema=public"
-REDIS_URL="redis://localhost:6380"
+DATABASE_URL="postgresql://user:password@localhost:porta/mydb?schema=public"
+REDIS_URL="redis://localhost:porta"
 PORT=5000
 ```
-Caso utilize uma porta diferente para o Redis, ajuste o valor de REDIS_URL e no Docker-compose. (O exemplo usado nesse desenvolvimento está alocado nas estruturas do sistema)
 
 ## **📦 Instalação**
 
