@@ -11,12 +11,21 @@ import { taskQueue } from "../queues/taskQueue";
 export class TaskServices {
 
     async getLatters() {
-        return await prisma.letter.findMany();
+        try{
+            return await prisma.letter.findMany();
+        } catch (error) {
+            console.error("Erro ao buscar cartas:", error);
+            throw new Error("Erro ao buscar cartas no banco de dados.");
+        }
     };
 
     async createLatter(data: createLatterDTO) {
-        // Adiciona a tarefa na fila
-        await taskQueue.add("create-letter", data);
-        return { message: "Tarefa enviada para processamento" };
+        try{
+            await taskQueue.add("create-letter", data);
+            return { message: "Tarefa enviada para processamento" };
+        } catch (error) {
+            console.error("Erro ao adicionar tarefa na fila:", error);
+            throw new Error("Erro ao adicionar a tarefa na fila para processamento.");
+        }
     };
 };
