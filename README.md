@@ -76,6 +76,12 @@ npx ts-node src/jobs/taskWorker.ts
 ts-node src/jobs/taskWorker.ts
 ```
 
+4. *Quarto (opicional):* Observe o databse:
+Rode o comando abaixo e será aberto uma página na port 5555 lhe mostrando o banco de dados
+```bash
+npx prisma studio
+```
+
 ## **🚀 Bull Board Dashboard**
 Este projeto inclui uma interface gráfica para monitoramento das filas usando **Bull Board**. Para acessar o painel de controle:
 1. Inicie a aplicação:
